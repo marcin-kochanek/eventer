@@ -1,7 +1,7 @@
 console.log('App.js is running!');
 
 //////////////////
-// Events and Attributes
+// Manual data binding
 
 let counter = 0;
 const addOne = () => {

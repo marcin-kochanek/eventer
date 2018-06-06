@@ -2,7 +2,7 @@
 // Conditional Rendering
 // if statements, ternary operators, logical '&&' operator
 
-var user = {
+const user = {
   name: 'Aleksandra',
   age: 24,
   //location: 'Brynica'
@@ -15,7 +15,7 @@ function getLocation(location) {
     return 'Unknown';
   }
 }
-var templateFive = (
+const templateFive = (
   <div>
     <h1>{user.name}</h1>
     <p>Age: {user.age}</p>
@@ -29,7 +29,7 @@ function getLocation2(location) {
     return <p>Location: {location}</p>;
   }
 }
-var templateSix = (
+const templateSix = (
   <div>
     <h1>{user.name ? user.name : 'Anonymous'}</h1>
     {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
@@ -37,13 +37,13 @@ var templateSix = (
   </div>
 );
 
-var app = {
+const app = {
   title: 'To-Do List',
   subtitle: 'React App',
   //options: ['One', 'Two']
 };
 
-var templateSeven = (
+const templateSeven = (
   <div>
     <h1>{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
@@ -51,5 +51,5 @@ var templateSeven = (
   </div>
 );
 
-var appRoot = document.getElementById('app');
+const appRoot = document.getElementById('app');
 ReactDOM.render(templateSeven, appRoot);

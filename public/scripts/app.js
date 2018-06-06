@@ -3,56 +3,84 @@
 console.log('App.js is running!');
 
 //////////////////
-// Events and Attributes
-
-var counter = 0;
-var addOne = function addOne() {
-  counter++;
-  renderCounterApp();
-  console.log('addOne');
-};
-var minusOne = function minusOne() {
-  counter--;
-  renderCounterApp();
-  console.log('minusOne');
-};
-var resetCounter = function resetCounter() {
-  counter = 0;
-  renderCounterApp();
-  console.log('resetCounter');
-};
+// Forms and Inputs
 
 var appRoot = document.getElementById('app');
+var app = {
+  title: 'To-Do List',
+  subtitle: 'Put your life in the hands of a computer.',
+  options: []
+};
+var onFormSubmit = function onFormSubmit(e) {
+  //zapobiega domyślnym ustawieniom, czyli łączeniu się ze wskazanym adresem oraz przeładowaniu się strony 
+  e.preventDefault();
 
-// tymczasowe rozwizanie, ktre ma pokazac dzialanie i logike React
-// stworzenie funkcji, ktora bedzie sprawiala, ze nasz template bedzie na nowo renderowany z aktualizowana wartoscia zmiennej counter
-var renderCounterApp = function renderCounterApp() {
+  var option = e.target.elements.option.value;
+  if (option) {
+    app.options.push(' ' + option);
+    e.target.elements.option.value = '';
+    renderToDoApp();
+  }
+};
+
+var onRemoveAllOptions = function onRemoveAllOptions() {
+  app.options = [];
+  renderToDoApp();
+};
+
+var renderToDoApp = function renderToDoApp() {
   var template = React.createElement(
     'div',
     null,
     React.createElement(
       'h1',
       null,
-      'Count: ',
-      counter
+      app.title
+    ),
+    app.subtitle && React.createElement(
+      'p',
+      null,
+      app.subtitle
+    ),
+    app.options && app.options.length > 0 ? 'Here are your options: ' + app.options : 'No options',
+    React.createElement(
+      'p',
+      null,
+      'Options length: ',
+      app.options.length
     ),
     React.createElement(
       'button',
-      { onClick: addOne },
-      '+1'
+      { onClick: onRemoveAllOptions },
+      'Remove all'
     ),
     React.createElement(
-      'button',
-      { onClick: minusOne },
-      '-1'
+      'ol',
+      null,
+      React.createElement(
+        'li',
+        null,
+        'Item one'
+      ),
+      React.createElement(
+        'li',
+        null,
+        'Item two'
+      )
     ),
     React.createElement(
-      'button',
-      { onClick: resetCounter },
-      'reset'
+      'form',
+      { onSubmit: onFormSubmit },
+      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement(
+        'button',
+        null,
+        'Add option'
+      )
     )
   );
 
   ReactDOM.render(template, appRoot);
 };
-renderCounterApp();
+
+renderToDoApp();
