@@ -3,29 +3,45 @@
 console.log('App.js is running!');
 
 //////////////////
-// Forms and Inputs
+// Picking an Option
 
 var appRoot = document.getElementById('app');
 var app = {
   title: 'To-Do List',
   subtitle: 'Put your life in the hands of a computer.',
-  options: []
+  tasks: []
 };
 var onFormSubmit = function onFormSubmit(e) {
   //zapobiega domyślnym ustawieniom, czyli łączeniu się ze wskazanym adresem oraz przeładowaniu się strony 
   e.preventDefault();
 
-  var option = e.target.elements.option.value;
-  if (option) {
-    app.options.push(' ' + option);
-    e.target.elements.option.value = '';
+  var task = e.target.elements.task.value;
+  if (task) {
+    app.tasks.push(' ' + task);
+    e.target.elements.task.value = '';
     renderToDoApp();
   }
 };
 
 var onRemoveAllOptions = function onRemoveAllOptions() {
-  app.options = [];
+  app.tasks = [];
   renderToDoApp();
+};
+
+var addNewOption = function addNewOption(array) {
+  return array.map(function (task, index) {
+    return React.createElement(
+      'li',
+      { key: index },
+      task
+    );
+  });
+};
+
+var onPickTask = function onPickTask() {
+  var randomNumber = Math.floor(Math.random() * app.tasks.length);
+  var pickedOption = app.tasks[randomNumber];
+  alert(pickedOption);
 };
 
 var renderToDoApp = function renderToDoApp() {
@@ -42,12 +58,17 @@ var renderToDoApp = function renderToDoApp() {
       null,
       app.subtitle
     ),
-    app.options && app.options.length > 0 ? 'Here are your options: ' + app.options : 'No options',
+    app.tasks && app.tasks.length > 0 ? 'Here are your tasks:' : 'No tasks',
     React.createElement(
       'p',
       null,
-      'Options length: ',
-      app.options.length
+      'The number of tasks: ',
+      app.tasks.length
+    ),
+    React.createElement(
+      'button',
+      { disabled: app.tasks.length === 0, onClick: onPickTask },
+      'What should I do first?'
     ),
     React.createElement(
       'button',
@@ -57,25 +78,16 @@ var renderToDoApp = function renderToDoApp() {
     React.createElement(
       'ol',
       null,
-      React.createElement(
-        'li',
-        null,
-        'Item one'
-      ),
-      React.createElement(
-        'li',
-        null,
-        'Item two'
-      )
+      addNewOption(app.tasks)
     ),
     React.createElement(
       'form',
       { onSubmit: onFormSubmit },
-      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement('input', { type: 'text', name: 'task' }),
       React.createElement(
         'button',
         null,
-        'Add option'
+        'Add task'
       )
     )
   );
