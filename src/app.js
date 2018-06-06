@@ -7,7 +7,7 @@ console.log('App.js is running!');
 //////////////////
 // JS Expressions
 
-var template = (
+const template = (
   <div>
     <h1>To-Do List App</h1>
     <p>Shopping list:</p>
@@ -18,10 +18,10 @@ var template = (
   </div>
 );
 
-var userName = 'Marcin';
-var userAge = 27;
-var userLocation = 'Wrocław';
-var templateTwo = (
+const userName = 'Marcin';
+const userAge = 27;
+const userLocation = 'Wrocław';
+const templateTwo = (
   <div>
     <h1>{userName.toUpperCase() + ' Kochanek'}</h1>
     <p>Age: {userAge}</p>
@@ -29,12 +29,12 @@ var templateTwo = (
   </div>
 );
 
-var user = {
+let user = {
   name: 'Aleksandra',
   age: 24,
   location: 'Brynica'
 };
-var templateThree = (
+const templateThree = (
   <div>
     <h1>{user.name + ' Pawłowicz'}</h1>
     <p>Age: {user.age}</p>
@@ -42,11 +42,11 @@ var templateThree = (
   </div>
 );
 
-var app = {
+let app = {
   title: 'To-Do List',
   subtitle: 'React App'
 };
-var templateFour = (
+const templateFour = (
   <div>
     <h2>{app.title}</h2>
     <h2>{app.subtitle}</h2>
@@ -57,7 +57,7 @@ var templateFour = (
 // Conditional Rendering
 // if statements, ternary operators, logical '&&' operator
 
-var user = {
+user = {
   name: 'Aleksandra',
   age: 24,
   //location: 'Brynica'
@@ -70,7 +70,7 @@ function getLocation(location) {
     return 'Unknown';
   }
 }
-var templateFive = (
+const templateFive = (
   <div>
     <h1>{user.name}</h1>
     <p>Age: {user.age}</p>
@@ -84,7 +84,7 @@ function getLocation2(location) {
     return <p>Location: {location}</p>;
   }
 }
-var templateSix = (
+const templateSix = (
   <div>
     <h1>{user.name ? user.name : 'Anonymous'}</h1>
     {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
@@ -92,13 +92,13 @@ var templateSix = (
   </div>
 );
 
-var app = {
+app = {
   title: 'To-Do List',
   subtitle: 'React App',
   //options: ['One', 'Two']
 };
 
-var templateSeven = (
+const templateSeven = (
   <div>
     <h1>{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
@@ -106,5 +106,5 @@ var templateSeven = (
   </div>
 );
 
-var appRoot = document.getElementById('app');
+const appRoot = document.getElementById('app');
 ReactDOM.render(templateSeven, appRoot);
