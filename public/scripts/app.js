@@ -1,9 +1,6 @@
 'use strict';
 
-console.log('App.js is running!');
-
-//////////////////
-// Picking an Option
+console.log('To-Do List App is running!');
 
 var appRoot = document.getElementById('app');
 var app = {

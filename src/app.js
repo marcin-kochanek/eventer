@@ -1,7 +1,4 @@
-console.log('App.js is running!');
-
-//////////////////
-// Picking an Option
+console.log('To-Do List App is running!');
 
 const appRoot = document.getElementById('app');
 const app = {
