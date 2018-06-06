@@ -1,0 +1,17 @@
+{
+  "name": "to-do-list_app",
+  "version": "1.0.0",
+  "description": "A simple To-Do List App",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcin-kochanek/to-do-list.git"
+  },
+  "author": {
+    "name": "Marcin Kochanek"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1"
+  }
+}
