@@ -20,12 +20,16 @@ var ToDoApp = function (_React$Component) {
   _createClass(ToDoApp, [{
     key: 'render',
     value: function render() {
+      var title = 'To-Do App';
+      var subtitle = 'Put your life in the hands of a computer.';
+      var tasks = ['Thing one', 'Thing two', 'Thing four'];
+
       return React.createElement(
         'div',
         null,
-        React.createElement(Header, null),
+        React.createElement(Header, { title: title, subtitle: subtitle }),
         React.createElement(Action, null),
-        React.createElement(Options, null),
+        React.createElement(Options, { tasks: tasks }),
         React.createElement(AddOption, null)
       );
     }
@@ -52,12 +56,12 @@ var Header = function (_React$Component2) {
         React.createElement(
           'h1',
           null,
-          'To-Do App'
+          this.props.title
         ),
         React.createElement(
           'h2',
           null,
-          'Put your life in the hands of a computer.'
+          this.props.subtitle
         )
       );
     }
@@ -108,8 +112,9 @@ var Options = function (_React$Component4) {
       return React.createElement(
         'div',
         null,
-        'Options component here',
-        React.createElement(Option, null)
+        this.props.tasks.map(function (task) {
+          return React.createElement(Option, { key: task, taskText: task });
+        })
       );
     }
   }]);
@@ -132,7 +137,7 @@ var Option = function (_React$Component5) {
       return React.createElement(
         'div',
         null,
-        'Option component here'
+        this.props.taskText
       );
     }
   }]);
