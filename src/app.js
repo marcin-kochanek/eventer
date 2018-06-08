@@ -41,7 +41,8 @@ class Action extends React.Component {
 
 class Options extends React.Component {
   handleRemoveAll() {
-    alert('remove all');
+    console.log(this.props.tasks);
+    // alert('remove all');
   }
   render() {
     return (
