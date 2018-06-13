@@ -3,36 +3,54 @@ class ToDoApp extends React.Component {
     super(props);
     this.handleDeleteTasks = this.handleDeleteTasks.bind(this);
     this.handlePick = this.handlePick.bind(this);
-    this.handleAddOption = this.handleAddOption.bind(this);
+    this.handleAddTask = this.handleAddTask.bind(this);
+    this.handleDeleteTask = this.handleDeleteTask.bind(this);
     this.state = {
-      subtitle: 'Put your life in the hands of a computer.',
-      tasks: props.tasks
+      subtitle: 'Put your life in the hands of a computer',
     };
   }
   handleDeleteTasks() {
-    this.setState(() => {
-      return {
-        tasks: []
-      };
-    });
+    localStorage.clear();
+
+    this.setState(() => ({ tasks: [] }));
+  }
+  handleDeleteTask(taskToRemove) {
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.filter((task) => taskToRemove !== task )})) ;
   }
   handlePick() {
     const randomNumber = Math.floor(Math.random() * (this.state.tasks.length));
     const pickedTask = this.state.tasks[randomNumber];
     alert(pickedTask);
   }
-  handleAddOption(task) {
+  handleAddTask(task) {
     if (!task) {
       return 'Enter valid value to add item';
     } else if (this.state.tasks.indexOf(task) > -1) {
       return 'This task already exists';
     }
 
-    this.setState((prevState) => {
-      return {
-        tasks: prevState.tasks.concat(task)
-      };
-    });
+    this.setState((prevState) => ({ tasks: prevState.tasks.concat(task) }));
+  }
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem('tasks');
+      const tasks = JSON.parse(json);
+
+      if (tasks) {
+        this.setState(() => ({ tasks }));
+      }
+    } catch(e) {
+      // Do nothing
+    }
+  }
+  componentDidUpdate(prevState) {
+    if (prevState.tasks.length !== this.state.tasks.length) {
+      const json = JSON.stringify(this.state.tasks);
+      localStorage.setItem('tasks', json);
+    } else {
+      localStorage.clear();
+    }
   }
   render() {
     return (
@@ -45,18 +63,15 @@ class ToDoApp extends React.Component {
         <Options 
           tasks={this.state.tasks}
           handleDeleteTasks={this.handleDeleteTasks}
+          handleDeleteTask={this.handleDeleteTask}
         />
         <AddOption 
-          handleAddOption={this.handleAddOption}
+          handleAddTask={this.handleAddTask}
         />
       </div>
     );
   }
 }
-
-ToDoApp.defaultProps = {
-  tasks: []
-};
 
 const Header = (props) => {
   return (
@@ -87,9 +102,20 @@ const Action = (props) => {
 const Options = (props) => {
   return (
     <div>
-      <button onClick={props.handleDeleteTasks}>Remove all</button>
+      <button
+        onClick={props.handleDeleteTasks}
+      >
+        Remove all
+      </button>
+      {props.tasks.length === 0 && <p>Please add an option to get started!</p>}
       {
-        props.tasks.map(task => <Option key={task} taskText={task} />)
+        props.tasks.map(task => (
+          <Option 
+            key={task} 
+            taskText={task}
+            handleDeleteTask={props.handleDeleteTask}
+          />
+        ))
       }
     </div>
   );
@@ -99,6 +125,13 @@ const Option = (props) => {
   return (
     <div>
       {props.taskText}
+      <button 
+        onClick={() => {
+          props.handleDeleteTask(props.taskText);
+        }}
+      >
+        remove
+      </button>
     </div>
   );
 };
@@ -106,25 +139,27 @@ const Option = (props) => {
 class AddOption extends React.Component {
   constructor(props) {
     super(props);
-    this.handleAddOption = this.handleAddOption.bind(this);
+    this.handleAddTask = this.handleAddTask.bind(this);
     this.state = {
       error: undefined
     };
   }
-  handleAddOption(e) { 
+  handleAddTask(e) { 
     e.preventDefault(); 
   
     const task = e.target.elements.task.value.trim();
-    const error = this.props.handleAddOption(task);
+    const error = this.props.handleAddTask(task);
 
-    this.setState(() => {
-      return { error };
-    });
+    this.setState(() => ({ error }));
+
+    if (!error) {
+      e.target.elements.task.value = '';
+    }
   }
   render() {
     return (
       <div>
-        <form onSubmit={this.handleAddOption}>
+        <form onSubmit={this.handleAddTask}>
           <input type="text" name="task" />
           <button>Add task</button>
         </form>
@@ -133,14 +168,5 @@ class AddOption extends React.Component {
     );
   }
 }
-
-// const User = (props) => {
-//   return (
-//     <div>
-//       <p>Name: {props.name}</p>
-//       <p>Age: {props.age}</p>
-//     </div>
-//   );
-// }
 
 ReactDOM.render(<ToDoApp />, document.getElementById('app')); 

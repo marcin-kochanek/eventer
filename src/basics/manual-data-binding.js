@@ -22,7 +22,7 @@ const resetCounter = () => {
 
 const appRoot = document.getElementById('app');
 
-// tymczasowe rozwizanie, ktre ma pokazac dzialanie i logike React
+// tymczasowe rozwiazanie, ktre ma pokazac dzialanie i logike React
 // stworzenie funkcji, ktora bedzie sprawiala, ze nasz template bedzie na nowo renderowany z aktualizowana wartoscia zmiennej counter
 const renderCounterApp = () => {
   const template = (
