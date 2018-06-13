@@ -20,9 +20,8 @@ var ToDoApp = function (_React$Component) {
     _this.handlePick = _this.handlePick.bind(_this);
     _this.handleAddOption = _this.handleAddOption.bind(_this);
     _this.state = {
-      title: 'To-Do App',
       subtitle: 'Put your life in the hands of a computer.',
-      tasks: []
+      tasks: props.tasks
     };
     return _this;
   }
@@ -64,7 +63,7 @@ var ToDoApp = function (_React$Component) {
       return React.createElement(
         'div',
         null,
-        React.createElement(Header, { title: this.state.title, subtitle: this.state.subtitle }),
+        React.createElement(Header, { subtitle: this.state.subtitle }),
         React.createElement(Action, {
           hasOptions: this.state.tasks.length > 0,
           handlePick: this.handlePick
@@ -83,6 +82,10 @@ var ToDoApp = function (_React$Component) {
   return ToDoApp;
 }(React.Component);
 
+ToDoApp.defaultProps = {
+  tasks: []
+};
+
 var Header = function Header(props) {
   return React.createElement(
     'div',
@@ -92,12 +95,16 @@ var Header = function Header(props) {
       null,
       props.title
     ),
-    React.createElement(
+    props.subtitle && React.createElement(
       'h2',
       null,
       props.subtitle
     )
   );
+};
+
+Header.defaultProps = {
+  title: 'ToDo App'
 };
 
 var Action = function Action(props) {

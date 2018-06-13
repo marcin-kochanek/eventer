@@ -5,9 +5,8 @@ class ToDoApp extends React.Component {
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      title: 'To-Do App',
       subtitle: 'Put your life in the hands of a computer.',
-      tasks: []
+      tasks: props.tasks
     };
   }
   handleDeleteTasks() {
@@ -38,7 +37,7 @@ class ToDoApp extends React.Component {
   render() {
     return (
       <div>
-        <Header title={this.state.title} subtitle={this.state.subtitle}/>
+        <Header subtitle={this.state.subtitle}/>
         <Action 
           hasOptions={this.state.tasks.length > 0}
           handlePick={this.handlePick}
@@ -55,13 +54,21 @@ class ToDoApp extends React.Component {
   }
 }
 
+ToDoApp.defaultProps = {
+  tasks: []
+};
+
 const Header = (props) => {
   return (
     <div>
       <h1>{props.title}</h1>
-      <h2>{props.subtitle}</h2>
+      {props.subtitle && <h2>{props.subtitle}</h2>}
     </div>
   );
+};
+
+Header.defaultProps = {
+  title: 'ToDo App'
 };
 
 const Action = (props) => {
