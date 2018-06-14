@@ -6,8 +6,27 @@ class ToDoApp extends React.Component {
     this.handleAddTask = this.handleAddTask.bind(this);
     this.handleDeleteTask = this.handleDeleteTask.bind(this);
     this.state = {
-      subtitle: 'Put your life in the hands of a computer',
+      subtitle: 'Put your life in the hands of a computer.',
+      tasks: []
     };
+  }
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem('tasks');
+      const tasks = JSON.parse(json);
+
+      if (tasks) {
+        this.setState(() => ({ tasks }));
+      }
+    } catch(e) {
+      // Do nothing
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.tasks.length !== this.state.tasks.length) {
+      const json = JSON.stringify(this.state.tasks);
+      localStorage.setItem('tasks', json);
+    }
   }
   handleDeleteTasks() {
     localStorage.clear();
@@ -32,32 +51,12 @@ class ToDoApp extends React.Component {
 
     this.setState((prevState) => ({ tasks: prevState.tasks.concat(task) }));
   }
-  componentDidMount() {
-    try {
-      const json = localStorage.getItem('tasks');
-      const tasks = JSON.parse(json);
-
-      if (tasks) {
-        this.setState(() => ({ tasks }));
-      }
-    } catch(e) {
-      // Do nothing
-    }
-  }
-  componentDidUpdate(prevState) {
-    if (prevState.tasks.length !== this.state.tasks.length) {
-      const json = JSON.stringify(this.state.tasks);
-      localStorage.setItem('tasks', json);
-    } else {
-      localStorage.clear();
-    }
-  }
   render() {
     return (
       <div>
         <Header subtitle={this.state.subtitle}/>
         <Action 
-          hasOptions={this.state.tasks.length > 0}
+          hasOptions={(this.state.tasks.length > 0)}
           handlePick={this.handlePick}
         />
         <Options 
