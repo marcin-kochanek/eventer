@@ -3,19 +3,42 @@ import AddTask from './AddTask';
 import Action from './Action';
 import Header from './Header';
 import Tasks from './Tasks';
+import TaskModal from './TaskModal';
 
 export default class ToDoApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleDeleteTasks = this.handleDeleteTasks.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleAddTask = this.handleAddTask.bind(this);
-    this.handleDeleteTask = this.handleDeleteTask.bind(this);
-    this.state = {
-      subtitle: 'Put your life in the hands of a computer.',
-      tasks: []
-    };
-  }
+  state = {
+    tasks: [],
+    chosenTask: undefined
+  };
+  handleDeleteTasks = () => {
+    localStorage.clear();
+
+    this.setState(() => ({ tasks: [] }));
+  };
+  handleDeleteTask = (taskToRemove) => {
+    this.setState((prevState) => ({
+      tasks: prevState.tasks.filter((task) => taskToRemove !== task )})) ;
+  };
+  handlePick = () => {
+    const randomNumber = Math.floor(Math.random() * (this.state.tasks.length));
+    const pickedTask = this.state.tasks[randomNumber];
+    
+    this.setState(() => ({
+      chosenTask: pickedTask
+    }));
+  };
+  handleAddTask = (task) => {
+    if (!task) {
+      return 'Enter valid value to add item';
+    } else if (this.state.tasks.indexOf(task) > -1) {
+      return 'This task already exists';
+    }
+
+    this.setState((prevState) => ({ tasks: prevState.tasks.concat(task) }));
+  };
+  handleCloseModal = () => {
+    this.setState(() => ({ chosenTask: false }));
+  };
   componentDidMount() {
     try {
       const json = localStorage.getItem('tasks');
@@ -34,33 +57,10 @@ export default class ToDoApp extends React.Component {
       localStorage.setItem('tasks', json);
     }
   }
-  handleDeleteTasks() {
-    localStorage.clear();
-
-    this.setState(() => ({ tasks: [] }));
-  }
-  handleDeleteTask(taskToRemove) {
-    this.setState((prevState) => ({
-      tasks: prevState.tasks.filter((task) => taskToRemove !== task )})) ;
-  }
-  handlePick() {
-    const randomNumber = Math.floor(Math.random() * (this.state.tasks.length));
-    const pickedTask = this.state.tasks[randomNumber];
-    alert(pickedTask);
-  }
-  handleAddTask(task) {
-    if (!task) {
-      return 'Enter valid value to add item';
-    } else if (this.state.tasks.indexOf(task) > -1) {
-      return 'This task already exists';
-    }
-
-    this.setState((prevState) => ({ tasks: prevState.tasks.concat(task) }));
-  }
   render() {
     return (
-      <div>
-        <Header subtitle={this.state.subtitle}/>
+      <div className="container">
+      <Header subtitle={this.state.subtitle}/>
         <Action 
           hasTasks={(this.state.tasks.length > 0)}
           handlePick={this.handlePick}
@@ -72,6 +72,10 @@ export default class ToDoApp extends React.Component {
         />
         <AddTask 
           handleAddTask={this.handleAddTask}
+        />
+        <TaskModal 
+          chosenTask={this.state.chosenTask}
+          handleCloseModal={this.handleCloseModal}
         />
       </div>
     );

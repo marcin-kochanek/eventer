@@ -1,0 +1,42 @@
+.header {
+  margin: 0 auto;
+  //text-align: center;
+
+  &__title {
+    margin: 0;
+    font-size: 20rem;
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    color: $color-grey-dark;
+    font-size: $size-m;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 1.5px;
+  }
+
+  // &__title:after {
+  //   content: "\203A";
+  //   font-size: 20rem;
+  //   display: inline-block;
+  //   position: relative;
+  //   color: $color-purple;
+  //   transform: rotate(90deg);
+  //   top: 0;
+  //   left: 0;
+  // }
+
+  &__title:after {
+    content: "";
+    width: 2rem;
+    height: 4rem;
+    display: inline-block;
+    border: solid $color-purple;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    position: relative;
+  }
+}

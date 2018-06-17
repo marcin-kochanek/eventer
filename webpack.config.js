@@ -10,9 +10,22 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader'
-      }
+      loaders: 'babel-loader'
+    }, {
+      test: /\.css$/,
+      loaders: [
+        'style-loader',
+        'css-loader',
+        'resolve-url-loader'
+      ]
+    }, {
+      test: /\.scss$/,
+      loaders: [
+        'style-loader',
+        'css-loader',
+        'sass-loader',
+        'resolve-url-loader'
+      ]
     }]
   },
   devtool: 'cheap-module-eval-source-map',
