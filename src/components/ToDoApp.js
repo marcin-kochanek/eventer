@@ -4,6 +4,7 @@ import Action from './Action';
 import Header from './Header';
 import Tasks from './Tasks';
 import TaskModal from './TaskModal';
+import DateInfo from './DateInfo';
 
 export default class ToDoApp extends React.Component {
   state = {
@@ -60,23 +61,26 @@ export default class ToDoApp extends React.Component {
   render() {
     return (
       <div className="container">
-      <Header subtitle={this.state.subtitle}/>
-        <Action 
-          hasTasks={(this.state.tasks.length > 0)}
-          handlePick={this.handlePick}
-        />
-        <Tasks 
-          tasks={this.state.tasks}
-          handleDeleteTasks={this.handleDeleteTasks}
-          handleDeleteTask={this.handleDeleteTask}
-        />
-        <AddTask 
-          handleAddTask={this.handleAddTask}
-        />
-        <TaskModal 
-          chosenTask={this.state.chosenTask}
-          handleCloseModal={this.handleCloseModal}
-        />
+        <Header subtitle={this.state.subtitle}/>
+        <div className="app-container">
+          <DateInfo />
+          <AddTask 
+            handleAddTask={this.handleAddTask}
+          />
+          <Tasks 
+            tasks={this.state.tasks}
+            handleDeleteTasks={this.handleDeleteTasks}
+            handleDeleteTask={this.handleDeleteTask}
+          />
+          <Action 
+            hasTasks={(this.state.tasks.length > 0)}
+            handlePick={this.handlePick}
+          />
+          <TaskModal 
+            chosenTask={this.state.chosenTask}
+            handleCloseModal={this.handleCloseModal}
+          />
+        </div>
       </div>
     );
   }

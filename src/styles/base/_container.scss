@@ -7,3 +7,10 @@
   justify-content: center;
   align-items: center;
 }
+
+.app-container {
+  color: $color-grey-dark;
+  min-width: 45rem;
+  background: $color-white;
+  padding: 5rem;
+}
