@@ -5,7 +5,11 @@
 
   &__heading {
     font-size: 1.8rem;
-    //text-transform: uppercase;
+    position: relative;
     font-weight: 600;
+    
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 5rem;
   }
 }
