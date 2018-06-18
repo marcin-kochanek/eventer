@@ -10,7 +10,7 @@ const Header = (props) => (
 
 Header.defaultProps = {
   title: 'Do',
-  subtitle: 'React to-do app. yours, for free.'
+  subtitle: 'React to-do web app. yours, for free.'
 };
 
 export default Header;

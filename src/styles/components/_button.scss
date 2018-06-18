@@ -28,6 +28,7 @@
     width: 2.5rem;
     background: $color-white;
     border: 4px solid $color-grey-light;
+    z-index: 100;
   }
 
   &--checked {
@@ -43,6 +44,7 @@
       position: relative;
       transform: rotate(45deg) translate(-50%, -50%);
       left: -50%;
+      top: 7px;
     }
   }
 
