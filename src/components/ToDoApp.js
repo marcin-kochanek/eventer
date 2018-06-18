@@ -62,27 +62,29 @@ export default class ToDoApp extends React.Component {
     return (
       <div className="container">
         <Header subtitle={this.state.subtitle}/>
-        <div className="app-container">
-          <div>
-            <DateInfo />
-            <AddTask 
+        <div className="app" id="app-container">
+          <div className="app-container">
+            <div>
+              <DateInfo />
+              <AddTask 
+                handleAddTask={this.handleAddTask}
+              />
+              <Tasks 
+                tasks={this.state.tasks}
+                handleDeleteTasks={this.handleDeleteTasks}
+                handleDeleteTask={this.handleDeleteTask}
+              />
+            </div>
+            <Action 
+              hasTasks={(this.state.tasks.length > 0)}
+              handlePick={this.handlePick}
+            />
+            <TaskModal 
+              chosenTask={this.state.chosenTask}
+              handleCloseModal={this.handleCloseModal}
               handleAddTask={this.handleAddTask}
             />
-            <Tasks 
-              tasks={this.state.tasks}
-              handleDeleteTasks={this.handleDeleteTasks}
-              handleDeleteTask={this.handleDeleteTask}
-            />
           </div>
-          <Action 
-            hasTasks={(this.state.tasks.length > 0)}
-            handlePick={this.handlePick}
-          />
-          <TaskModal 
-            chosenTask={this.state.chosenTask}
-            handleCloseModal={this.handleCloseModal}
-            handleAddTask={this.handleAddTask}
-          />
         </div>
       </div>
     );

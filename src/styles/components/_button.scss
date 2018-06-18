@@ -36,7 +36,7 @@
     &:after {
       content: "";
       width: 1rem;
-      height: 1.5rem;
+      height: 1.9rem;
       display: inline-block;
       border: solid $color-purple;
       border-width: 0 3px 3px 0;
@@ -53,6 +53,22 @@
     padding: 1rem 3rem;
     background: $color-green;
     font-weight: 500;
+    color: $color-white;
+    position: relative;
+    top: 6rem;
+  }
+
+  &--start {
+    -webkit-box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    border-radius: 100px;
+    font-size: 1.5rem;
+    height: 4rem;
+    padding: 1rem 3rem;
+    background: $color-purple;
+    font-weight: 400;
     color: $color-white;
   }
 }

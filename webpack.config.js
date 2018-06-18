@@ -23,7 +23,7 @@ module.exports = {
       loaders: [
         'style-loader',
         'css-loader',
-        'sass-loader',
+        'sass-loader?sourceMap',
         'resolve-url-loader'
       ]
     }]

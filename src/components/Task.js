@@ -7,7 +7,7 @@ const Task = (props) => (
       className="button button--remove" 
       onClick={(e) => {
         //props.handleDeleteTask(props.taskText);
-        e.target.parentElement.firstChild.className = 'widget__item widget__item--checked';
+        e.target.parentElement.firstChild.className = 'widget__item--checked';
         e.target.className = 'button button--checked';
       }}
     >
