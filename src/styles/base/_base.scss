@@ -1,11 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   font-size: 62.5%; // 1rem = 10px;
-  background-color: $color-grey-light;
+  background-color: $color-white-dark;
 }
 
 body {
   font-family: 'Montserrat', 'Arial', sans-serif;
   font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 6rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: none;
+  //background: darken($color: , $amount: 0)
+}
+
+::-webkit-input-placeholder {
+  color: $color-grey;
 }

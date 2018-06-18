@@ -18,7 +18,7 @@ export default class ToDoApp extends React.Component {
   };
   handleDeleteTask = (taskToRemove) => {
     this.setState((prevState) => ({
-      tasks: prevState.tasks.filter((task) => taskToRemove !== task )})) ;
+      tasks: prevState.tasks.filter((task) => taskToRemove !== task )}));
   };
   handlePick = () => {
     const randomNumber = Math.floor(Math.random() * (this.state.tasks.length));
@@ -63,15 +63,17 @@ export default class ToDoApp extends React.Component {
       <div className="container">
         <Header subtitle={this.state.subtitle}/>
         <div className="app-container">
-          <DateInfo />
-          <AddTask 
-            handleAddTask={this.handleAddTask}
-          />
-          <Tasks 
-            tasks={this.state.tasks}
-            handleDeleteTasks={this.handleDeleteTasks}
-            handleDeleteTask={this.handleDeleteTask}
-          />
+          <div>
+            <DateInfo />
+            <AddTask 
+              handleAddTask={this.handleAddTask}
+            />
+            <Tasks 
+              tasks={this.state.tasks}
+              handleDeleteTasks={this.handleDeleteTasks}
+              handleDeleteTask={this.handleDeleteTask}
+            />
+          </div>
           <Action 
             hasTasks={(this.state.tasks.length > 0)}
             handlePick={this.handlePick}
@@ -79,6 +81,7 @@ export default class ToDoApp extends React.Component {
           <TaskModal 
             chosenTask={this.state.chosenTask}
             handleCloseModal={this.handleCloseModal}
+            handleAddTask={this.handleAddTask}
           />
         </div>
       </div>

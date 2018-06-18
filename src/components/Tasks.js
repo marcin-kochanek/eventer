@@ -3,9 +3,12 @@ import Task from './Task';
 
 const Tasks = (props) => (
   <div>
-    <button onClick={props.handleDeleteTasks}>
-      Remove all
-    </button>
+    <div className="widget-header">
+      <h3 className="widget-header__heading">Your tasks</h3>
+      <button className="button button--link" onClick={props.handleDeleteTasks}>
+        Remove All
+      </button>
+    </div>
     {props.tasks.length === 0 && <p>Please add an option to get started!</p>}
     {
       props.tasks.map(task => (

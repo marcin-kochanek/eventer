@@ -1,0 +1,13 @@
+.widget {
+  &__item {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+    &--checked {
+      text-decoration: line-through;
+      color: $color-grey-light;
+    }
+  }
+}

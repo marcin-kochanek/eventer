@@ -1,14 +1,16 @@
 import React from 'react';
 
 const Task = (props) => (
-  <div>
-    {props.taskText}
-    <button 
-      onClick={() => {
-        props.handleDeleteTask(props.taskText);
+  <div className="widget__item">
+    <p className="widget__item--unchecked">{props.taskText}</p>
+    <button
+      className="button button--remove" 
+      onClick={(e) => {
+        //props.handleDeleteTask(props.taskText);
+        e.target.parentElement.firstChild.className = 'widget__item widget__item--checked';
+        e.target.className = 'button button--checked';
       }}
     >
-      remove
     </button>
   </div>
 );

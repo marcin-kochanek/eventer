@@ -3,14 +3,29 @@
   margin: 0 auto;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
 
 .app-container {
   color: $color-grey-dark;
   min-width: 45rem;
   background: $color-white;
-  padding: 5rem;
+  padding: 4rem;
+  padding-bottom: 0rem;
+}
+
+.full-date-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.action-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 2rem;
 }

@@ -1,0 +1,11 @@
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+  &__heading {
+    font-size: 1.8rem;
+    //text-transform: uppercase;
+    font-weight: 600;
+  }
+}
