@@ -1,7 +1,10 @@
 .header {
   text-align: center;
-  padding: 5rem;
-  height: 95vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   &__title {
     color: $color-black;
@@ -10,6 +13,14 @@
     font-size: 30rem;
     font-weight: 100;
     text-transform: uppercase;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 24rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 14rem;
+    }
   }
 
   &__subtitle {
@@ -19,6 +30,15 @@
     text-transform: uppercase;
     margin-bottom: 5rem;
     letter-spacing: 1.5px;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 1.7rem;
+      margin-bottom: 2rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.3rem;
+    }
   }
 
   &__title:after {
@@ -27,8 +47,20 @@
     height: 6rem;
     display: inline-block;
     border: solid $color-green;
-    border-width: 0 6px 6px 0;
+    border-width: 0 9px 9px 0;
     transform: rotate(45deg);
     position: relative;
+
+    @media only screen and (max-width: $bp-medium) {
+      width: 2.5rem;
+      height: 4.5rem;
+      border-width: 0 5px 5px 0;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      width: 2rem;
+      height: 3.3rem;
+      border-width: 0 4px 4px 0;
+    }
   }
 }

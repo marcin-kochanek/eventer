@@ -4,7 +4,7 @@ import Action from './Action';
 import Header from './Header';
 import Tasks from './Tasks';
 import TaskModal from './TaskModal';
-import DateInfo from './DateInfo';
+import WidgetHeader from './WidgetHeader';
 
 export default class ToDoApp extends React.Component {
   state = {
@@ -62,10 +62,10 @@ export default class ToDoApp extends React.Component {
     return (
       <div className="container">
         <Header subtitle={this.state.subtitle}/>
-        <div className="app" id="app-container">
+        <div className="app">
           <div className="app-container">
             <div>
-              <DateInfo />
+              <WidgetHeader />
               <AddTask 
                 handleAddTask={this.handleAddTask}
               />

@@ -9,7 +9,11 @@ $color-green: #50e3a4;
 $color-green-dark: #46BE8B;
 $color-purple: #8357C5;
 
-// font-sizes, spacing
-$size-m: 1.6rem;
-$size-l: 3.2rem;
-$size-xl: 4.8rem;
+
+// rwd
+$bp-largest: 81.25em; // 1300px/16px = 81,25
+$bp-large: 68.75em;  // 1100
+$bp-medium: 56.25em;  // 900
+$bp-small: 37.5em;  // 600
+$bp-smallest: 31.25em;  // 500
+$bp-mini: 28.15em;  // 450

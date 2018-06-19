@@ -6,10 +6,12 @@ const TaskModal = (props) => (
     isOpen={!!props.chosenTask}
     onRequestClose={props.handleCloseModal}
     contentLabel="Chosen Task"
+    closeTimeoutMS={200}
+    className="modal"
   >
-    <h3>Chosen Task</h3>
-    {props.chosenTask && <p>{props.chosenTask}</p>}
-    <button onClick={props.handleCloseModal}>Okay, thanks!</button>
+    <h3 className="modal__title">Do it now</h3>
+    {props.chosenTask && <p className="modal__body">{props.chosenTask}</p>}
+    <button className="button button--close" onClick={props.handleCloseModal}>I'm getting to work!</button>
   </Modal>
 );
 

@@ -1,7 +1,7 @@
 .button {
   border: none;
   outline: none;
-
+  
   &--add {
     background: $color-green;
     font-weight: 500;
@@ -30,10 +30,12 @@
     background: $color-white;
     border: 4px solid $color-grey-light;
     z-index: 100;
+    margin-right: 1.3rem;
   }
 
   &--checked {
     background: none;
+    margin-right: 1.3rem;
 
     &:after {
       content: "";
@@ -50,26 +52,55 @@
   }
 
   &--action {
+    -webkit-box-shadow: .5rem 1rem 2rem rgba(0, 0, 0, .2);
+    box-shadow: .5rem 1rem 2rem rgba(0, 0, 0, .2);
     border-radius: 100px;
     font-size: 1.5rem;
-    height: 4rem;
     padding: 1rem 3rem;
     background: $color-green;
     font-weight: 500;
     color: $color-white;
     position: relative;
     top: 6rem;
+
+    &:disabled {
+      opacity: .4;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      top: 0;
+    }
   }
 
   &--start {
-    -webkit-box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
-    box-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: .5rem 1rem 2rem rgba(0, 0, 0, .2);
+    box-shadow: .5rem 1rem 2rem rgba(0, 0, 0, .2);
     text-transform: uppercase;
     letter-spacing: 1.3px;
     border-radius: 100px;
     font-size: 1.5rem;
-    height: 4rem;
-    padding: 1rem 3rem;
+    padding: 1.5rem 3rem;
+    background: $color-purple;
+    font-weight: 400;
+    color: $color-white;
+    margin-bottom: 2rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+    }
+  }
+
+  &--close {
+    -webkit-box-shadow: .5rem 1rem 2rem rgba(0, 0, 0, .2);
+    box-shadow: .5rem 1rem 2rem rgba(0, 0, 0, .2);
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    border-radius: 100px;
+    font-size: 1.1rem;
+    padding: 1.5rem 3rem;
     background: $color-purple;
     font-weight: 400;
     color: $color-white;

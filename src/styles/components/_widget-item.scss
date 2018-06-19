@@ -1,0 +1,24 @@
+.widget {
+  &__item {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  word-break: break-all;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--unchecked {
+      width: 90%;
+    }
+
+    &--checked {
+      text-decoration: line-through;
+      color: $color-grey-light;
+      width: 90%;
+    }
+  }
+}

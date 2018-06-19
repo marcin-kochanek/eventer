@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class DateInfo extends React.Component {
+export default class WidgetHeader extends React.Component {
   getDay = () => (new Date().getDate());
   getMonth = () => {
     const MONTHS = [`jan`, `feb`, `mar`, `apr`, `may`, `jun`, `jul`, `aug`, `sep`, `oct`, `nov`, `dec`];
@@ -14,15 +14,15 @@ export default class DateInfo extends React.Component {
   };
   render() {
     return (
-      <div className="full-date-container">
-        <div className="date">
-          <p className="date__day">{this.getDay()}</p>
+      <div className="widget-date-container">
+        <div className="widget__date">
+          <p className="widget__date--day">{this.getDay()}</p>
           <div className="date-container">
-            <p className="date__month">{this.getMonth()}</p>
-            <p className="date__year">{this.getYear()}</p>
+            <p className="widget__date--month">{this.getMonth()}</p>
+            <p className="widget__date--year">{this.getYear()}</p>
           </div>
         </div>
-        <div className="week-day">
+        <div className="widget__date--week-day">
           <p>{this.getWeekDay()}</p>
         </div>
       </div>
