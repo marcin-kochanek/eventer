@@ -1,23 +1,15 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'; 
 
-const Header = (props) => (
-  <div className="header">
-    <h1 className="header__title">{props.title}</h1>
-    {props.subtitle && <h2 className="header__subtitle">{props.subtitle}</h2>}
-    <button 
-      className="button button--start" 
-      onClick={() => { 
-        const app = document.getElementsByClassName('app')[0];
-        app.scrollIntoView({block: 'start', behavior: 'smooth'});
-      }}>
-      Get started
-    </button>
-  </div>
+const Header = () => (
+  <header>
+    <h1>Eventer</h1>
+    <ul>
+      <li><NavLink exact to="/" activeClassName="is-active">Dashboard</NavLink></li>
+      <li><NavLink to="/add" activeClassName="is-active">Add a new event</NavLink></li>
+      <li><NavLink to="/help" activeClassName="is-active">Help</NavLink></li>
+    </ul>
+  </header>
 );
-
-Header.defaultProps = {
-  title: 'Do',
-  subtitle: 'React to-do app. yours, for free.'
-};
 
 export default Header;
