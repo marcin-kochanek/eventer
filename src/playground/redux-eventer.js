@@ -8,7 +8,8 @@ const addEvent = (
     title = '', 
     description = '', 
     organiser = '', 
-    location = '', 
+    location = '',
+    amount = 0,
     createdAt = 0
   } = {}
 ) => ({
@@ -19,6 +20,7 @@ const addEvent = (
     description,
     organiser,
     location,
+    amount,
     createdAt
   }
 });
@@ -38,13 +40,28 @@ const setTextFilter = (text = '') => ({
   type: 'SET_TEXT_FILTER',
   text
 });
-// SORTY_BY_DATE
-// SORTY_BY_CATEGORY
+// SORT_BY_DATE
+const sortByDate = () => ({
+  type: 'SORT_BY_DATE'
+});
+// SORT_BY_FEE
+const sortByFee = () => ({
+  type: 'SORT_BY_FEE'
+});
 // SET_START_DATE
+const setStartDate = (startDate = undefined) => ({
+  type: 'SET_START_DATE',
+  startDate
+});
 // SET_END_DATE
+const setEndDate = (endDate = undefined) => ({
+  type: 'SET_END_DATE',
+  endDate
+});
 
 // Events Reducer
 const eventsReducerDefaultState = [];
+
 const eventsReducer = (state = eventsReducerDefaultState, action) => {
   switch (action.type) {
   case 'ADD_EVENT':
@@ -70,7 +87,7 @@ const eventsReducer = (state = eventsReducerDefaultState, action) => {
 // Filters Reducer
 const filtersReducerDefaultState = {
   text: '',
-  sortBy: 'date',
+  sortBy: 'date', //date or amount
   startDate: undefined,
   endDate: undefined
 };
@@ -81,6 +98,26 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
     return {
       ...state,
       text: action.text
+    };
+  case 'SORT_BY_DATE':
+    return {
+      ...state,
+      sortBy: 'date'
+    };
+  case 'SORT_BY_FEE':
+    return {
+      ...state,
+      sortBy: 'fee'
+    };
+  case 'SET_START_DATE':
+    return {
+      ...state,
+      startDate: action.startDate
+    };
+  case 'SET_END_DATE':
+    return {
+      ...state,
+      endDate: action.endDate
     };
   default: 
     return state;
@@ -104,8 +141,16 @@ const eventTwo = store.dispatch(addEvent({ title: 'Coffee lovers', description: 
 
 store.dispatch(removeEvent(eventOne.event.id));
 store.dispatch(editEvent(eventTwo.event.id, { title: 'Tea lovers' }));
+
 store.dispatch(setTextFilter('party'));
 store.dispatch(setTextFilter());
+
+store.dispatch(sortByDate());
+store.dispatch(sortByFee());
+
+store.dispatch(setStartDate(125));
+store.dispatch(setStartDate());
+store.dispatch(setEndDate(1250));
 
 const demoState = {
   events: [{
@@ -119,7 +164,7 @@ const demoState = {
   }],
   filters: {
     text: 'Wrocław', // title or location
-    sortBy: 'date', //date or category
+    sortBy: 'xxx', //date or category
     startDate: undefined,
     endDate: undefined
   }
