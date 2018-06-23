@@ -9,7 +9,7 @@ const addEvent = (
     description = '', 
     organiser = '', 
     location = '',
-    amount = 0,
+    fee = 0,
     createdAt = 0
   } = {}
 ) => ({
@@ -20,7 +20,7 @@ const addEvent = (
     description,
     organiser,
     location,
-    amount,
+    fee,
     createdAt
   }
 });
@@ -124,6 +124,23 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
   }
 };
 
+// Get visible events
+const getVisibleEvents = (events, { text, sortBy, startDate, endDate }) => {
+  return events.filter((event) => {
+    const textMatch = (event.description.toLowerCase() || event.title.toLowerCase()).includes(text.toLowerCase());
+    const startDateMatch = typeof startDate !== 'number' || startDate <= event.createdAt;
+    const endDateMatch = typeof endDate !== 'number' || endDate >= event.createdAt;
+
+    return textMatch && startDateMatch && endDateMatch;
+  }).sort((a, b) => {
+    if (sortBy === 'date') {
+      return a.createdAt < b.createdAt ? 1 : -1;
+    } else if (sortBy === 'fee') {
+      return a.fee < b.fee ? 1 : -1;
+    }
+  });
+};
+
 // Store creation
 const store = createStore(
   combineReducers({
@@ -133,24 +150,36 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  console.log(store.getState());
+  const state = store.getState();
+  const visibleEvents = getVisibleEvents(state.events, state.filters);
+  console.log(visibleEvents);
 });
 
-const eventOne = store.dispatch(addEvent({ title: 'Single Party', description: 'A great party with house music for all singles' }));
-const eventTwo = store.dispatch(addEvent({ title: 'Coffee lovers', description: 'A meeting for everyone who loves coffe' }));
+const eventOne = store.dispatch(addEvent({
+  title: 'Single Party',
+  description: 'A great party with house music for all singles',
+  fee: 10,
+  createdAt: -21000
+}));
+const eventTwo = store.dispatch(addEvent({
+  title: 'Coffee lovers',
+  description: 'A meeting for everyone who loves coffe',
+  fee: 5,
+  createdAt: -1000
+}));
 
-store.dispatch(removeEvent(eventOne.event.id));
-store.dispatch(editEvent(eventTwo.event.id, { title: 'Tea lovers' }));
+// store.dispatch(removeEvent(eventOne.event.id));
+// store.dispatch(editEvent(eventTwo.event.id, { title: 'Tea lovers' }));
 
-store.dispatch(setTextFilter('party'));
-store.dispatch(setTextFilter());
+// store.dispatch(setTextFilter('singles'));
+// store.dispatch(setTextFilter());
 
-store.dispatch(sortByDate());
+// store.dispatch(sortByDate());
 store.dispatch(sortByFee());
 
-store.dispatch(setStartDate(125));
-store.dispatch(setStartDate());
-store.dispatch(setEndDate(1250));
+// store.dispatch(setStartDate(0));
+// store.dispatch(setStartDate());
+// store.dispatch(setEndDate(999));
 
 const demoState = {
   events: [{
