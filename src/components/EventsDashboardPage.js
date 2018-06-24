@@ -1,8 +1,11 @@
 import React from 'react';
+import EventListFilters from './EventListFilters';
+import EventList from './EventList';
 
 const EventsDashboardPage = () => (
   <div>
-    This is from my dashboard component
+    <EventListFilters />
+    <EventList />
   </div>
 );
 

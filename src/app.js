@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { addEvent, RemoveEvent, editEvent } from './actions/events';
@@ -18,17 +19,29 @@ store.subscribe(() => {
 store.dispatch(addEvent({
   title: 'Singlarty',
   description: 'A great party with house music for all singles',
-  fee: 10,
+  fee: 5,
   createdAt: -21000
 }));
 
 store.dispatch(addEvent({
   title: 'Coffee lovers',
   description: 'A meeting for everyone who loves coffee',
-  fee: 5,
+  fee: 15,
   createdAt: -1000
 }));
 
-store.dispatch(setTextFilter('singla'));
+store.dispatch(addEvent({
+  title: 'WC2018',
+  description: 'You can watch all WC matches here',
+  fee: 0,
+  createdAt: 1000
+}));
 
-ReactDOM.render(<AppRouter />, document.getElementById('app')); 
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+);
+
+
+ReactDOM.render(jsx, document.getElementById('app')); 

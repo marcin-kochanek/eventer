@@ -10,7 +10,7 @@ const getVisibleEvents = (events, { text, sortBy, startDate, endDate }) => {
     if (sortBy === 'date') {
       return a.createdAt < b.createdAt ? 1 : -1;
     } else if (sortBy === 'fee') {
-      return a.fee < b.fee ? 1 : -1;
+      return a.fee > b.fee ? 1 : -1; //the event with the lowest fee on the top
     }
   });
 };
