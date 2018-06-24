@@ -4,7 +4,6 @@ const getVisibleEvents = (events, { text, sortBy, startDate, endDate }) => {
     const textMatch = (event.title.toLowerCase().includes(text.toLowerCase()) || event.location.toLowerCase().includes(text.toLowerCase()));
     const startDateMatch = typeof startDate !== 'number' || startDate <= event.createdAt;
     const endDateMatch = typeof endDate !== 'number' || endDate >= event.createdAt;
-    console.log((event.title.toLowerCase() || event.location.toLowerCase()).includes(text.toLowerCase()));
 
     return textMatch && startDateMatch && endDateMatch;
   }).sort((a, b) => {
