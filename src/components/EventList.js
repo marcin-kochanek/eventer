@@ -25,7 +25,8 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(EventList);
 
 //  {...event} - this is the object spread syntax. Without it, you'd have to pass in the props like this:
-// amount={expense.amount}
+// feet={expense.afee}
 // description={expense.description}
 // id={expense.id}
+// location={expense.location}
 // createdAt={expense.createdAt}

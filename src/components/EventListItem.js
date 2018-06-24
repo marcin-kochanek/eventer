@@ -7,6 +7,7 @@ const EventListItem = ((event) => (
     <li> 
       <h3>Title: {event.title}</h3>
       <p>Description: {event.description}</p>
+      <p>Location: {event.location}</p>
       <p>Fee: {event.fee} PLN</p>
       <p>Created at: {event.createdAt}</p>
       <button onClick={() => {

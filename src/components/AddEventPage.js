@@ -1,8 +1,10 @@
 import React from 'react';
+import EventForm from './EventForm';
 
 const AddEventPage = () => (
   <div>
-    This is from my add event component
+    <h1>Add Event</h1>
+    <EventForm />
   </div>
 );
 

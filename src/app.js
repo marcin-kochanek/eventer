@@ -19,6 +19,7 @@ store.subscribe(() => {
 store.dispatch(addEvent({
   title: 'Singlarty',
   description: 'A great party with house music for all singles',
+  location: 'Wrocław',
   fee: 5,
   createdAt: -21000
 }));
@@ -26,6 +27,7 @@ store.dispatch(addEvent({
 store.dispatch(addEvent({
   title: 'Coffee lovers',
   description: 'A meeting for everyone who loves coffee',
+  location: 'Wrocław',
   fee: 15,
   createdAt: -1000
 }));
@@ -33,6 +35,7 @@ store.dispatch(addEvent({
 store.dispatch(addEvent({
   title: 'WC2018',
   description: 'You can watch all WC matches here',
+  location: 'Warszawa',
   fee: 0,
   createdAt: 1000
 }));

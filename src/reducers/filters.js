@@ -1,6 +1,6 @@
 // Filters Reducer
 const filtersReducerDefaultState = {
-  text: '',
+  text: '', // title or location
   sortBy: 'date', //date or amount
   startDate: undefined,
   endDate: undefined
