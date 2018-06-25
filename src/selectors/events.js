@@ -1,9 +1,11 @@
+import moment from 'moment';
+
 // Get visible events
 const getVisibleEvents = (events, { text, sortBy, startDate, endDate }) => {
   return events.filter((event) => {
     const textMatch = (event.title.toLowerCase().includes(text.toLowerCase()) || event.location.toLowerCase().includes(text.toLowerCase()));
-    const startDateMatch = typeof startDate !== 'number' || startDate <= event.createdAt;
-    const endDateMatch = typeof endDate !== 'number' || endDate >= event.createdAt;
+    const startDateMatch = startDate ? startDate.isSameOrBefore(moment(event.createdAt), 'day') : true ;
+    const endDateMatch = endDate ? endDate.isSameOrAfter(moment(event.createdAt), 'day') : true ;
 
     return textMatch && startDateMatch && endDateMatch;
   }).sort((a, b) => {

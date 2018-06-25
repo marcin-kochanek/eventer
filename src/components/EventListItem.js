@@ -1,20 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { removeEvent } from '../actions/events';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const EventListItem = ((event) => (
   <div>
     <li> 
-      <h3>Title: {event.title}</h3>
-      <p>Description: {event.description}</p>
+      <Link to={`/edit/${event.id}`}>
+        <h3>{event.title}</h3>
+      </Link>
+      <p>{event.description}</p>
       <p>Location: {event.location}</p>
       <p>Fee: {event.fee} PLN</p>
-      <p>Created at: {event.createdAt}</p>
-      <button onClick={() => {
-        event.dispatch(removeEvent(event.id));
-      }}>X</button>
+      <p>Created at: {moment(event.createdAt).format('Do MMMM, YYYY')}</p>
     </li>
   </div>
 ));
 
-export default connect()(EventListItem);
+export default EventListItem;

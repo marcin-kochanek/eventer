@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'; 
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import Header from '../components/Header';
 import EventsDashboardPage from '../components/EventsDashboardPage';
 import AddEventPage from '../components/AddEventPage';
 import EditEventPage from '../components/EditEventPage';
-import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 
 const AppRouter = () => (
@@ -15,7 +15,6 @@ const AppRouter = () => (
         <Route exact path="/" component={EventsDashboardPage} />
         <Route path="/add" component={AddEventPage} />
         <Route path="/edit/:id" component={EditEventPage} />
-        <Route path="/help" component={HelpPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

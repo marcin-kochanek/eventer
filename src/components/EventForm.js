@@ -1,17 +1,23 @@
 import React from 'react';
 import moment from 'moment';
-// import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
+// change the date format from mm/dd/yyyy to dd/mm/yyyy  
+moment.updateLocale('en', {
+  longDateFormat: {
+    L: 'DD/MM/YYYY'
+  }
+});
+
 export default class EventForm extends React.Component {
   state = {
-    title: '',
-    description: '',
-    organiser: '',
-    location: '',
-    fee: '',
-    createdAt: moment(),
+    title: this.props.event ? this.props.event.title : '',
+    description: this.props.event ? this.props.event.description : '',
+    organiser: this.props.event ? this.props.event.organiser : '',
+    location: this.props.event ? this.props.event.location : '',
+    fee: this.props.event ? (this.props.event.fee).toString() : '',
+    createdAt: this.props.event ? moment(this.props.event.createdAt) : moment(),
     calendarFocused: false,
     error: ''
   };
@@ -38,6 +44,9 @@ export default class EventForm extends React.Component {
     }
   };
   onDateChange = (createdAt) => {
+  console.log('dldl', this.state.createdAt);
+  console.log(moment(this.state.createdAt).format('DD MM YYYY'));
+
     if (createdAt) {
       this.setState(() => ({ createdAt }));
     }
@@ -105,7 +114,7 @@ export default class EventForm extends React.Component {
             onFocusChange={this.onFocusChange}
             numberOfMonths={1}
           />
-          <button>add</button>
+          <button>submit</button>
         </form>
       </div>
     );

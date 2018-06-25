@@ -1,4 +1,5 @@
 import React from 'react';
+
 import EventListFilters from './EventListFilters';
 import EventList from './EventList';
 
