@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import getVisibleEvents from './selectors/events';
+
 import { addEvent, RemoveEvent, editEvent } from './actions/events';
 import { setTextFilter, sortByDate, sortByFee, setStartDate, setEndDate } from './actions/filters';
-import getVisibleEvents from './selectors/events';
+
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
 
